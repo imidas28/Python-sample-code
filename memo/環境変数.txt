@@ -1,0 +1,22 @@
+環境変数とは：
+・プログラム本体のソースコードを変更せずに外部から値を注入して挙動を変えられる仕組み。
+・OSやコンテナの実行環境に設定されたキー/値のペア。
+・プログラムは process.env（Node.js）や os.environ（Python）などを通じて参照します。
+
+例:
+bash:
+# 環境変数を設定
+export APP_MODE=production
+
+python:
+# Python から参照
+import os
+
+if os.environ.get("APP_MODE") == "production":
+    print("本番モードで実行")
+else:
+    print("開発モードで実行")
+
+
+# まとめ
+環境変数は「プログラムのロジックは変えず、外部から与える設定値で挙動を切り替えるための仕組み」。
