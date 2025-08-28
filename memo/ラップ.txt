@@ -1,0 +1,45 @@
+「ラップして再送出する」という表現は、元の例外を新しい例外に"包み込んで"投げ直すという意味。
+これは、Pythonの例外処理で非常に重要なテクニック。
+
+✅ 「ラップする」とは？
+元の例外（例：JSONDecodeError）を新しい例外（例：OutputParserException）
+に“原因として保持”しながら、再度 raise することです。
+
+🔍 実際のコードで見ると：
+try:
+    json_obj = json.loads(text)
+except JSONDecodeError as e:
+    raise OutputParserException(f"Got invalid JSON object. Error: {e}") from e
+
+ここでの from e が ラップの核心です。
+・OutputParserException が新しく発生する例外
+・e（元の JSONDecodeError）がその「原因」として保持される
+
+🧠 なぜラップするのか？
+・エラーメッセージを整理：
+外部には「OutputParserに失敗した」と伝えたいが、内部では「JSONが壊れていた」と知っておきたい
+・階層的なエラーハンドリング：
+上位のコードでは OutputParserException を処理し、下位の詳細はログやデバッグで確認できる
+
+✅ まとめ
+・raise ... from e:
+Pythonの構文で例外をラップする方法
+・__cause__:
+ラップされた元の例外を保持する属性
+
+Pythonにおける raise は、例外（エラー）を意図的に発生させるためのキーワードです。
+✅ raise の意味
+「ここで例外を投げる（発生させる）」という命令です。
+
+🔍 基本構文
+raise ValueError("不正な値です")
+このコードは、ValueError という例外を発生させて、 
+「この処理は続行できない」ということをプログラムに伝えます。
+
+🔁 raise の応用：ラップして再送出
+try:
+    json.loads("Python")  # 無効なJSON
+except JSONDecodeError as e:
+    raise OutputParserException("JSON解析に失敗しました") from e
+
+このように、元の例外を新しい例外に包んで再送出することもできます（前回の「ラップ」の話ですね！）。

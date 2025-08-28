@@ -1,0 +1,26 @@
+スキーマ(schema)とは、「データの形や構造を定義するもの」。
+
+1.一般的なスキーマの意味：
+「スキーマ」はいろんな分野で使われるが、共通するのはデータのルールを決めること。
+・データベースのスキーマ
+→ テーブル名、カラム名、データ型などを定義する設計図。
+例: users テーブルのスキーマ：
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    age INTEGER
+);
+
+
+2.JSONスキーマ：
+→ JSONデータの「どんなフィールドがあるか」「型は何か」を定義する。
+{
+  "type": "object",
+  "properties": {
+    "name": {"type": "string"},
+    "age": {"type": "integer"}
+  },
+  "required": ["name"]
+}
+
+👉 要するに「データがどんな形・構造であるべきか」を表す設計書。
