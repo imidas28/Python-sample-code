@@ -1,0 +1,35 @@
+1️⃣ curlとは？
+curl は コマンドラインからHTTP通信を行うツール です。
+つまり、ブラウザを開かなくても、WebサーバーやAPIにアクセスしてデータを送受信できます。
+・URLにアクセスしてページを取得
+・APIにリクエストを送信（GET/POST/PUT/DELETEなど）
+・ファイルのダウンロードやアップロード
+
+端末（ターミナル）から「HTTPのやりとり」を手軽に試せるツール、と覚えると分かりやすいです。
+
+
+2️⃣ curlの基本構文
+curl [オプション] URL
+
+
+3️⃣ 具体例①：Webページの取得（GETリクエスト）
+curl https://www.example.com
+・ブラウザで https://www.example.com を開いたのと同じ
+・HTMLがターミナルに表示される
+
+
+3️⃣ 具体例③：Slack APIにPOSTリクエスト（メッセージ送信）
+curl -X POST -H "Authorization: Bearer xoxb-トークン" \
+     -H "Content-Type: application/json" \
+     -d '{"channel":"C09CEK0MTEK","text":"Hello"}' \
+     https://slack.com/api/chat.postMessage
+
+-X POST → POSTメソッド
+-H "Authorization: Bearer ..." → Botトークンをヘッダに渡す
+-d '{…}' → 送信するJSONデータ
+結果として「Hello」が指定チャンネルに送信される
+
+
+3️⃣ 具体例④：ファイルのダウンロード
+curl -o sample.html https://www.example.com
+・-o sample.html でHTMLをファイルとして保存
