@@ -1,0 +1,15 @@
+🔹 マウントとは
+外部のストレージやデバイスを、自分のコンピュータ上のディレクトリ（フォルダ）として扱えるように接続すること。
+コンピュータの視点では、接続したストレージがあたかも自分のローカルのフォルダのように使える状態になります。
+「マウントする」「マウントされる」と言います。
+
+🔍 Googleドライブでのマウント
+Google Colab では以下のように使います：
+from google.colab import drive
+drive.mount('/content/drive')
+
+・/content/drive というディレクトリが作られ、Googleドライブの中身がその中に表示される
+・つまり、Googleドライブのファイルを ローカルのファイルのように操作できる
+
+with open("/content/drive/MyDrive/sample.txt") as f:
+    text = f.read()

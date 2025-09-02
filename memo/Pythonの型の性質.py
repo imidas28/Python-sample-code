@@ -16,3 +16,10 @@ from typing import List
 
 nums: List[int] = [1, 2, 3]
 nums = "文字列" # 実行時にはエラーにならない(型は無視される)
+
+
+# 静的型付け言語：
+# TypeScriptのような静的型付け言語の場合、const age: number = 25のように型が明示的に指定されるため、
+# コンパイラがプログラム実行前に型エラーを検出してくれる。
+# const age: number = 25 # 型が事前に決まっている。
+# age = "Hello" # number型の変数にstring型は代入出来ない
